@@ -4,6 +4,7 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"fmt"
 	"log"
 	"log/slog"
@@ -29,6 +30,9 @@ func main() {
 		return
 	}
 
+	port := flag.Int("port", 0, "Server port (overrides PORT env and app config)")
+	flag.Parse()
+
 	appDir := getAppDir()
 	_ = godotenv.Load(fmt.Sprintf("%s/.env", appDir), fmt.Sprintf("%s/.env.dist", appDir))
 
@@ -36,7 +40,18 @@ func main() {
 
 	router := initRouter()
 
-	addr := fmt.Sprintf(":%s", getEnv("PORT", "2200"))
+	appPort := router.Config().Port
+	if appPort == 0 {
+		appPort = 2200
+	}
+	if envPort := os.Getenv("PORT"); envPort != "" {
+		fmt.Sscanf(envPort, "%d", &appPort)
+	}
+	if *port > 0 {
+		appPort = *port
+	}
+	addr := fmt.Sprintf(":%d", appPort)
+
 	server := &http.Server{
 		Addr:         addr,
 		Handler:      router,
@@ -105,11 +120,4 @@ func initRouter() *api.Router {
 	}
 
 	return router
-}
-
-func getEnv(key, defaultValue string) string {
-	if value := os.Getenv(key); value != "" {
-		return value
-	}
-	return defaultValue
 }
