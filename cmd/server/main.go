@@ -45,7 +45,7 @@ func main() {
 		appPort = 2200
 	}
 	if envPort := os.Getenv("PORT"); envPort != "" {
-		fmt.Sscanf(envPort, "%d", &appPort)
+		_, _ = fmt.Sscanf(envPort, "%d", &appPort)
 	}
 	if *port > 0 {
 		appPort = *port
