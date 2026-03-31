@@ -5,7 +5,7 @@ go 1.25.3
 require (
 	github.com/doordash-oss/oapi-codegen-dd/v3 v3.72.12
 	github.com/go-chi/chi/v5 v5.2.5
-	github.com/go-playground/validator/v10 v10.30.1
+	github.com/go-playground/validator/v10 v10.30.2
 	github.com/joho/godotenv v1.5.1
 	github.com/lmittmann/tint v1.1.3
 	github.com/mockzilla/connexions/v2 v2.1.83
@@ -30,10 +30,10 @@ require (
 	github.com/pb33f/ordered-map/v2 v2.3.0 // indirect
 	github.com/redis/go-redis/v9 v9.13.0 // indirect
 	github.com/sony/gobreaker/v2 v2.3.0 // indirect
-	golang.org/x/crypto v0.47.0 // indirect
+	golang.org/x/crypto v0.49.0 // indirect
 	golang.org/x/mod v0.33.0 // indirect
-	golang.org/x/sync v0.19.0 // indirect
-	golang.org/x/sys v0.40.0 // indirect
-	golang.org/x/text v0.33.0 // indirect
-	golang.org/x/tools v0.41.0 // indirect
+	golang.org/x/sync v0.20.0 // indirect
+	golang.org/x/sys v0.42.0 // indirect
+	golang.org/x/text v0.35.0 // indirect
+	golang.org/x/tools v0.42.0 // indirect
 )
